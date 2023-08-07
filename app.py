@@ -6,25 +6,26 @@ import joblib
 rf_model = joblib.load("best_model.joblib")
 preprocessor = joblib.load("preprocessor.joblib")
 
-# Define a function to make predictions using the loaded Random Forest model
-def predict_sales_revenue(month, customer_age, customer_gender, country, state, product_category, sub_category, quantity, unit_cost, unit_price):
-    input_data = [[month, customer_age, customer_gender, country, state, product_category, sub_category, quantity, unit_cost, unit_price]]
-    input_df = pd.DataFrame(input_data, columns=['Month', 'Customer Age', 'Customer Gender', 'Country', 'State', 'Product Category', 'Sub Category', 'Quantity', 'Unit Cost', 'Unit Price'])
-    rf_pred = rf_model.predict(input_df)[0]
-    # X_test_preprocessed = preprocessor.transform(input_df)
-    # rf_pred = rf_model.predict(X_test_preprocessed)[0]
-    return rf_pred
+def predict_customer_gender(country, state, product_category, sub_category, month, unit_price, customer_age):
+    input_data = [[month, customer_age, country, state, product_category, sub_category, unit_price]]
+    input_df = pd.DataFrame(input_data, columns=['Month', 'Customer Age', 'Country', 'State', 'Product Category', 'Sub Category', 'Unit Price'])
+
+    # Transform the input data using the preprocessor
+    input_data_transformed = preprocessor.transform(input_df)
+
+    # Make gender predictions using the trained Random Forest model
+    prediction = rf_model.predict(input_data_transformed)[0]
+    
+    # Display human readable output
+    if prediction == 'M':
+        return 'Male'
+    else:
+        return 'Female'
+
 
 countries = ['United States', 'France', 'United Kingdom', 'Germany']
-product_categories = ['Accessories', 'Clothing', 'Bikes']
-sub_category = ['Tires and Tubes', 'Gloves', 'Helmets', 'Bike Stands',
-       'Mountain Bikes', 'Hydration Packs', 'Jerseys', 'Fenders',
-       'Cleaners', 'Socks', 'Caps', 'Touring Bikes', 'Bottles and Cages',
-       'Vests', 'Road Bikes', 'Bike Racks', 'Shorts']
-month = ['February', 'March', 'April', 'June', 'July', 'August',
-       'September', 'October', 'November', 'December', 'May', 'January']
 
-state = ['Washington', 'California', 'Oregon', 'Essonne', 'Yveline',
+states = ['Washington', 'California', 'Oregon', 'Essonne', 'Yveline',
        'England', 'Hessen', 'Hamburg', 'Seine Saint Denis', 'Saarland',
        'Nordrhein-Westfalen', 'Bayern', 'Seine (Paris)', 'Pas de Calais',
        'Moselle', 'Hauts de Seine', 'Nord', 'Seine et Marne', 'Loiret',
@@ -35,24 +36,28 @@ state = ['Washington', 'California', 'Oregon', 'Essonne', 'Yveline',
        'North Carolina', 'Georgia', 'Virginia', 'Mississippi', 'Montana',
        'Arizona', 'Massachusetts', 'Utah']
 
+product_categories = ['Accessories', 'Clothing', 'Bikes']
+
+sub_category = ['Tires and Tubes', 'Gloves', 'Helmets', 'Bike Stands',
+       'Mountain Bikes', 'Hydration Packs', 'Jerseys', 'Fenders',
+       'Cleaners', 'Socks', 'Caps', 'Touring Bikes', 'Bottles and Cages',
+       'Vests', 'Road Bikes', 'Bike Racks', 'Shorts']
+
+months = ['February', 'March', 'April', 'June', 'July', 'August',
+       'September', 'October', 'November', 'December', 'May', 'January']
+
+
 # Define the input interface for the Gradio app
 inputs = [
-    gr.inputs.Dropdown(choices=month, label="Month"),
-    gr.inputs.Number(label="Customer Age"),
-    gr.inputs.Dropdown(choices=["F", "M"], label="Customer Gender"),
     gr.inputs.Dropdown(choices=countries, label="Country"),
-    gr.inputs.Dropdown(choices=state, label="State"),
+    gr.inputs.Dropdown(choices=states, label="State"),
     gr.inputs.Dropdown(choices=product_categories, label="Product Category"),
     gr.inputs.Dropdown(choices=sub_category, label="Sub Category"),
-    gr.inputs.Number(label="Quantity"),
-    gr.inputs.Number(label="Unit Cost"),
-    gr.inputs.Number(label="Unit Price")
+    gr.inputs.Dropdown(choices=months, label="Month"),
+    gr.inputs.Number(label="Unit Price"),
+    gr.inputs.Number(label="Customer Age"),
 ]
 
-# Define the Gradio interface and the function to make predictions
-app = gr.Interface(fn=predict_sales_revenue, inputs=inputs, outputs="text")
+app = gr.Interface(fn=predict_customer_gender, inputs=inputs, outputs="text", title="Product Release Planning App", live=True)
 
-# Launch the Gradio app
 app.launch(share=True)
-
-
