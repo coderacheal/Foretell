@@ -46,7 +46,7 @@
 <details>
 <summary>Front End</summary>
   <ul>
-    <li><a href="https://www.postgresql.org/">Streamlit</a></li>
+    <li><a href="https://www.postgresql.org/">Gradio</a></li>
   </ul>
 </details>
 
@@ -55,8 +55,7 @@
 
 ## Key Features <a name="key-features"></a>
 
-- **Create Ruby on Rails project**
-- **Add migrations**
+- **App asks for input from customer and predict how much money the company can make from the customer**
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -76,7 +75,7 @@ Example command:
 
 ```sh
 
-  install streamlit
+  install 
 
 ```
 
@@ -114,7 +113,7 @@ Example command:
 
 ```sh
 
-  streamlit 
+   
 
 ```
 
