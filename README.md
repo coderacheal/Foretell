@@ -15,8 +15,8 @@
     - [Tech Stack ](#tech-stack-)
   - [Key Features ](#key-features-)
   - [💻 Getting Started ](#-getting-started-)
-    - [Prerequisites](#prerequisites)
     - [Setup](#setup)
+    - [Prerequisites](#prerequisites)
     - [Install](#install)
     - [Usage](#usage)
   - [👥 Authors ](#-authors-)
@@ -30,10 +30,9 @@
 
 # World Economic Data <a name="about-project"></a>
 
-**World Economic Data** is a finance app that enables you to track your expenses based on the type of expenses you define. Complete with authentication, it helps you stay on top of the dollar
+**World Economic Data** is a repository that analysis information data made available by the world bank to draw insights. 
 
 ## 🛠 Built With <a name="built-with"></a>
-
 ### Tech Stack <a name="tech-stack"></a>
 
 <details>
@@ -44,14 +43,14 @@
 </details>
 
 <details>
-
 <summary>Database</summary>
   <ul>
     <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
   </ul>
 </details>
 
-<summary>Storeage</summary>
+<details>
+<summary>Storage</summary>
   <ul>
     <li><a href="https://www.postgresql.org/">Amazon RDS</a></li>
   </ul>
@@ -60,9 +59,11 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!-- Features -->
 
+![Alt text](assets/api_design.png)
 ## Key Features <a name="key-features"></a>
 
 - **Interactive dashboard**
+- **Store data in Amazon RDS to exploit clous based storage**
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -71,18 +72,7 @@
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-
 To get a local copy up and running, follow these steps.
-
-### Prerequisites
-
-In order to run this project you need:
-
-Example command:
-
-```sh
- gem install rails
-```
 
 ### Setup
 
@@ -91,19 +81,26 @@ Clone this repository to your desired folder:
 Example commands:
 
 ```sh
-  cd my-folder
-  git clone https://github.com/coderacheal/everest.git
+  git clone https://github.com/coderacheal/World-Economic-Data-Project.git
+
+  cd World-Economic-Data-Project
+```
+### Prerequisites
+
+In order to run this project you need create a virtual environement:
+
+```sh
+  python -m venv venv
 ```
 
 ### Install
 
-Install this project with:
+In order to run this project you need run:
 
 Example command:
 
 ```sh
-  cd everest
-  gem install
+  pip install
 ```
 
 ### Usage
@@ -113,11 +110,7 @@ To run the project, execute the following command:
 Example command:
 
 ```sh
-  rails server 
-
-  OR 
-
-  rails s
+ 
 ```
 
 <!-- AUTHORS -->
@@ -135,7 +128,6 @@ Example command:
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
-
 
 - **Add visualizations for each category**
   
@@ -164,7 +156,7 @@ If you like this project kindly show some love, give it a 🌟 **STAR** 🌟
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank all the free available resource made available online
+I would like to thank the developer of the `wbgapi`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

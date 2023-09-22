@@ -1,0 +1,4 @@
+SH.MED.CMHW.P3	Community health workers (per 1,000 people)
+SH.STA.ARIC.ZS	ARI treatment (% of children under 5 taken to a health provider)
+SH.UHC.FBP1.ZS	Proportion of population pushed further below the $2.15 ($ 2017 PPP) poverty line by out-of-pocket health care expenditure (%)
+SH.XPD.CHEX.GD.ZS	Current health expenditure (% of GDP)
