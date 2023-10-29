@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <h1><b>Amanlyzing the World Bank Database</b></h1>
+  <h1><b>Analyzing the World Bank Database</b></h1>
 </div>
 
 
